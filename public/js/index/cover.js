@@ -15,9 +15,9 @@ import {
     cameraPositionXAxis,
     cameraPositionYAxis,
     cameraPositionZAxis,
-    VelocityXAxis,
-    VelocityYAxis,
-    VelocityZAxis,
+    velocityXAxis,
+    velocityYAxis,
+    velocityZAxis,
     cubeRotationXAxis,
     cubeRotationYAxis,
     cubeRotationZAxis,
@@ -138,9 +138,9 @@ class Box {
         this.positionY = positionY;
         this.positionZ = positionZ;
         this.createBox();
-        this.velocityX = VelocityXAxis;
-        this.velocityY = VelocityYAxis;
-        this.velocityZ = VelocityZAxis;
+        this.velocityX = velocityXAxis;
+        this.velocityY = velocityYAxis;
+        this.velocityZ = velocityZAxis;
         this.directionX = directionX;
         this.directionY = directionY;
         this.directionZ = directionZ;

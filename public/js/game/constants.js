@@ -286,8 +286,8 @@ export const muteMuskAudioInputsHashMusk = {
     unmute: {path: "./resources/audio/elon_musk/unmute_elon_musk.wav", context: contextElonMusk}
 }
 Object.freeze(muteMuskAudioInputsHashMusk);
-export const initialTimeDelayMusk = 5000; // milliseconds
-export const timeDelayIncreaseMusk = 5000; // milliseconds
+export const initialTimeDelayMusk = 1000 * 10; // milliseconds
+export const timeDelayIncreaseMusk = 1000 * 20; // milliseconds
 export const eventMuskEnd = new Event('eventMuskEnd'); // signify when all Musk audio files have played
 export const initialVolumeLevelMusk = 1.8
 
