@@ -1,5 +1,5 @@
 export const cubeDimension = 1.5;
-export const textureResourcePath = '../../public/resources/images/cubeTexture.jpg';
+export const textureResourcePath = '../../resources/images/cubeTexture.jpg';
 export const numberOfBoxes = 100;
 export const cameraFieldOfView = 75 // degrees
 export const cameraAspectRatio = window.innerWidth / window.innerHeight;
@@ -17,4 +17,4 @@ export const cubeRotationZAxis = 0.05;
 export const halfLineLength = 1000;
 export const cubePositionAvgDispersion = 20;
 export const button = document.querySelector('.enterBtn');
-export const tetrisPath = '../../public/game.html';
+export const tetrisPath = './game.html';
