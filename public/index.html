@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Elon Mustris</title>
+		<style>
+            body { 
+                margin: 0; 
+                background: rgb(24, 24, 24);
+            }
+
+            .webgl {
+                position: fixed;
+                top: 0;
+                left: 0;
+                outline: none;
+                z-index: -100;
+            }
+
+            .enterBtn {
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                border: none;
+            }
+
+            .text{
+                width: 100%;
+                height: 100%;
+                color: #4e6b7e;
+                font-size: 1em; 
+                text-align: center;
+            }
+
+            .container {
+                display: inline;
+                width: 100%;
+                height: 100%;
+                z-index: 100; 
+            }
+
+		</style>
+	</head>
+	<body>
+        <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+        <script type="importmap">
+        {
+            "imports": {
+            "three": "https://unpkg.com/three@0.126.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.126.1/examples/jsm/"
+            }
+        }
+        </script>
+		<script type="module" src="./js/index/cover.js"></script>
+        <canvas class="webgl"></canvas> 
+        <div class="container">
+                <button class="enterBtn"><p class="text">Click screen or press any button to enter.</p></button>
+        </div>
+	</body>
+</html>

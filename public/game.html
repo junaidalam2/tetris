@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css"></link>
+    <title>Elon Mustris</title>
+</head>
+<body>
+    <!-- <div class="overlay hidden"></div> -->
+    <div class="container-all-content">
+        <div class="canvas-holder">
+            <canvas id="background"></canvas>
+        </div>
+        <div class="container-inner-grid">
+            <div class="container-header">
+                <div class="tetro-header">
+                    <img class="tetro-header-img" alt="tetro" SRC="./resources/images/tetro.png">
+                </div>
+                <div class="first-word">
+                    <img class="first-word-img" alt="bird" SRC="./resources/images/titleFirstWord.png">
+                </div>
+                <div class="bird">
+                    <img class="bird-img" alt="title" SRC="./resources/images/bird.gif">
+                </div>
+                <div class="second-word">
+                    <img class="second-word-img" alt="title" SRC="./resources/images/titleSecondWord.png">
+                </div>
+            </div>
+            <div class="components">
+                <div class="game-status">
+                    <p class="status-text">
+                        <span class="material-symbols-outlined">
+                            monitoring
+                        </span>
+                            Score: 
+                        <span id="score">
+                            0
+                        </span>
+                    </p> 
+                    <p class="status-text">
+                        <span class="material-symbols-outlined">
+                            layers
+                        </span>
+                            Lines: 
+                        <span id="lines">
+                            0
+                        </span>
+                    </p> 
+                    <p class="status-text">
+                        <span class="material-symbols-outlined">
+                            floor
+                        </span>
+                            Level: 
+                        <span id="level">
+                            0
+                        </span>
+                    </p>
+                </div>
+                <button class="button" id="button-high-score">
+                    <p>High Scores</p>
+                </button>                
+                <div class="subheader" id='next-tetro-header'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16" id="icon">
+                        <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                    </svg>
+                    <p>Next Tetro</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16" id="icon">
+                        <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                    </svg>
+                </div>
+                <button class="button" id='keys-button-modal'>
+                    <p>Keys</p>
+                </button>
+               
+                <div class="overlay hidden"></div>
+                <canvas id='tetris-preview'></canvas>
+                <canvas id='tetris'></canvas>
+                <button class="button" id='start-button'>
+                    <p>Start</p>
+                </button>
+                <div class="musk">
+                    <p class="musk-text">
+                        <span class="large-x">X</span>
+                        <span class="material-symbols-outlined" id="open-quotation">❛❛</span>
+                        <span class="musk-words"></span>
+                        <span class="material-symbols-outlined" id="close-quotation">❜❜</span> 
+                    </p> 
+                </div>
+                <button class="button" id="button-musk">
+                    <p class="button-musk-text">Mute Elon Musk</p>
+                </button>
+                <div class="subheader" id='held-tetro-header'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16" id="icon">
+                        <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                    </svg>
+                    <p>Held Tetro</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16" id="icon">
+                        <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                    </svg>
+                </div>
+                <canvas id='tetris-hold'></canvas>
+                <div class="container-info-audio"></div>
+                    <button class="button" id='end-button'>
+                        <p>End Game</p>
+                    </button>
+                    <div class="info">
+                        <button class="button-round" id='info-button-modal'>
+                            <p>i</p>
+                        </button>
+                    </div>
+                    <div class="audio-button-div">
+                        <button class="button-audio">
+                            <span class="material-symbols-outlined" id='volume-icon'>
+                                volume_off
+                            </span>
+                        </button>
+                    </div>
+                    <div class="audio-slider-div">
+                        <label for="audioRange" id="volume-level">0%</label><input type="range" min="0" max="100" value="50" class="slider" id="audioRange">
+                    </div>
+                </div>
+                <section class="modal-score hidden-score">
+                    <div class="flex">
+                    <button class="score-button-close">⨉</button>
+                    </div>
+                    <div>
+                        <h3 class="high-score-title">High Scores!</h3>
+                        <table class="high-score-table">
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Lines</th>
+                                <th>Level</th>
+                            </tr>
+                        </table> 
+                    </div>
+                    <section class="highscore-update-delete">
+                        <br>
+                        <br>
+                        <form action="" id="form-high-score">
+                            <h3 class="high-score-title">Please Provide Your Name</h3>
+                            <input id="name" name="name" placeholder="Insert Your Name" minlength="1" maxlength="30" size="20" />
+                            <br>
+                            <div class="button-div">
+                                <button type="submit" class="button" id="high-score-submit">Submit</button>
+                                <div class="button-div-right">
+                                    <button type="button" class="button" id="high-score-delete">Delete Score</button>
+                                    <button type="button" class="button" id="high-score-exit">Exit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </section>
+                <section class="modal-keys hidden-keys">
+                    <div class="flex">
+                    <button class="keys-button-close">⨉</button>
+                    </div>
+                    <h3>Keys</h3>
+                    <div class="desktop-keys">
+                        <p><kbd>→</kbd>, or <kbd>6</kbd> Move right</p>
+                        <p><kbd>←</kbd>, or <kbd>4</kbd> Move left</p>
+                        <p><kbd>↓</kbd>, or <kbd>2</kbd> Soft drop</p>
+                        <p><kbd>space</kbd>, or <kbd>8</kbd> Hard drop</p>
+                        <p><kbd>↑</kbd>, <kbd>x</kbd>, <kbd>X</kbd>, <kbd>1</kbd>, <kbd>5</kbd>, or <kbd>9</kbd> Rotate clockwise</p>
+                        <p><kbd>3</kbd>, <kbd>7</kbd>, <kbd>ctrl + z</kbd>, or <kbd>ctrl + Z</kbd> Rotate counterclockwise</p>
+                        <p><kbd>0</kbd>, <kbd>shift + c</kbd>, or <kbd>shift + C</kbd> Hold</p>
+                        <p><kbd>esc</kbd>, <kbd>p</kbd>, <kbd>P</kbd>, or <kbd>f1</kbd> Pause / resume</p>
+                    </div>
+                    <div class="mobile-keys">
+                        <p><kbd>6</kbd> Move right</p>
+                        <p><kbd>4</kbd> Move left</p>
+                        <p><kbd>5</kbd> Soft drop</p>
+                        <p><kbd>2</kbd> Hard drop</p>
+                        <p><kbd>7</kbd>, <kbd>2</kbd>, or <kbd>#</kbd> Rotate clockwise</p>
+                        <p><kbd>9</kbd>, or <kbd>#</kbd> Rotate counterclockwise</p>
+                        <p><kbd>0</kbd> Hold</p>
+                        <p><kbd>1</kbd>, or <kbd>3</kbd> Pause / resume</p>
+                    </div>
+                </section>
+                <section class="modal-info hidden-info">
+                    <div class="flex">
+                        <button class="info-button-close">⨉</button>
+                    </div>
+                    <div>
+                        <p>Elon Mustris is based on Tetris. See <a href="https://tetris.com/about-us">tetris.com/about-us</a> 
+                            for more information.</p>
+                        
+                        <p>Elon Mustris is a parody of Elon Musk and is not affiliated with Elon Musk. Elon Musk was not quoted 
+                            when creating parodied content.</p>
+                        <br>
+                        <h3>Credits</h3>
+                        <ul>
+                            <li>Header blocks image: <a href="https://www.pngegg.com">https://www.pngegg.com</a></li>
+                            <li>Header twitter text: <a href="https://fontmeme.com/twitter-font/">https://fontmeme.com/twitter-font</a></li>
+                            <li>Header bird gif: <a href="http://www.clipartbest.com/clipart-4ibond5ig">http://www.clipartbest.com/clipart-4ibond5ig</a></li>
+                            <li>Sound files imitating Elon Musk: <a href="https://www.topmediai.com">https://www.topmediai.com</a></li>
+                            <li>Background music: 
+                                <ul class="bgMusic-list">
+                                    <li>Feel Good by MusicbyAden | <a href="https://soundcloud.com/musicbyaden">https://soundcloud.com/musicbyaden</a></li>
+                                    <li>Music promoted by <a href="https://www.chosic.com/free-music/all/">https://www.chosic.com/free-music/all/</a></li>
+                                    <li>Creative Commons CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0/">https://creativecommons.org/licenses/by-sa/3.0/</a></li>
+                                </ul>
+                            </li>
+                            <li>Sound effects for bound tetro, new level, pause, unpause, rotate, start beeps, held tetro, hard drop, and end of game: 
+                                <a href="https://pixabay.com">https://pixabay.com</a></li> 
+                            <li>Sound effect for clear line: <a href="https://www.zapsplat.com">https://www.zapsplat.com</a></li> 
+                        </ul>
+                    </div> 
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src='./js/game/main.js' type='module'></script>
+</body>
+</html>
