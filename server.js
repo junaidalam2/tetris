@@ -5,7 +5,8 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 //const dbServer = require('./server_db.js')
-const dbServerSqlite = require('./server_db.js')
+const dbServerSqlite = require('./sqlite_db.js');
+const { resolve6 } = require('dns/promises');
 
 // handle uncaught exceptions
 process.on('uncaughtException', function (err) {
@@ -54,7 +55,7 @@ app.get('/score_get', async (req, res, next) => {
     try {
         //let resultElements = await dbServer.dbSelectTopTen();
         let resultElements = await dbServerSqlite.dbSelectTopTen();
-        
+        console.log(resultElements)
         resultElements = JSON.parse(JSON.stringify(resultElements)) 
         //console.log(resultElements)
         res.status(200).json(resultElements); 
