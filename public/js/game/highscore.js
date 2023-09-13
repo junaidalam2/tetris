@@ -26,6 +26,8 @@ import {
     titleDefault,
     disabledBtnFontColor,
     disabledBtnBgColor,
+    enabledBtnFontColor,
+    enabledBtnBgColor,
     scoreInputSection,
     titleDisplay,
     tableDisplay,
@@ -103,7 +105,6 @@ export function exitModalOnNewHighScore() {
         titleDisplay.innerHTML  = titleDefault;
         
         if(game.highScore.lastGameScoreId) {
-            //clearHighScoreTable();
             game.highScore.highScoreIdArray = [];
             game.highScore.lastGameScoreId = null;
             receiveScorefromServer();
@@ -197,6 +198,19 @@ export function highScoreTableSetup() {
 }
 
 
+export function enableHighScoreButtons() {
+
+    deleteScore.style.color = enabledBtnFontColor; 
+    deleteScore.style.backgroundColor = enabledBtnBgColor;
+    deleteScore.disabled = false;
+    
+    submitScoreBtn.style.color = enabledBtnFontColor;
+    submitScoreBtn.style.backgroundColor = enabledBtnBgColor;
+    submitScoreBtn.disabled = false;
+
+}
+
+
 deleteScore.addEventListener("click", ()=> {
     
     deleteScore.style.color = disabledBtnFontColor;
@@ -208,7 +222,6 @@ deleteScore.addEventListener("click", ()=> {
     submitScoreBtn.disabled = true;
    
     deleteRequestToServer();
-    //clearHighScoreTable();
     game.highScore.highScoreIdArray = [];
     game.highScore.lastGameScoreId = null;
     receiveScorefromServer();

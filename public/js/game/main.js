@@ -55,6 +55,7 @@ import {
     receiveLastIdfromServer,
     clearHighScoreTable,
     highScoreTableSetup,
+    enableHighScoreButtons
 
 } from './highscore.js'
 
@@ -846,6 +847,7 @@ function resetGame() {
     updateScoreHTML();
     document.getElementById('start-button').innerHTML = "Start";
     renderMuskRestart();
+    enableHighScoreButtons();
 
 }
 

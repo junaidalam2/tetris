@@ -21,7 +21,7 @@
     <title>Elon Mustris</title>
 </head>
 <body>
-    <!-- <div class="overlay hidden"></div> -->
+    <div class="overlay hidden" id="overlay-outside"></div>
     <div class="container-all-content">
         <div class="canvas-holder">
             <canvas id="background"></canvas>
@@ -87,7 +87,8 @@
                     <p>Keys</p>
                 </button>
                
-                <div class="overlay hidden"></div>
+                <!-- <div class="overlay" id="overlay-inside"></div> -->
+
                 <canvas id='tetris-preview'></canvas>
                 <canvas id='tetris'></canvas>
                 <button class="button" id='start-button'>
@@ -134,6 +135,10 @@
                         <label for="audioRange" id="volume-level">0%</label><input type="range" min="0" max="100" value="50" class="slider" id="audioRange">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div>
                 <section class="modal-score hidden-score">
                     <div class="flex">
                     <button class="score-button-close">⨉</button>
@@ -223,8 +228,6 @@
                         </ul>
                     </div> 
                 </section>
-            </div>
-        </div>
     </div>
     <script src='./js/game/main.js' type='module'></script>
 </body>
