@@ -44,20 +44,17 @@ app.post('/score_update_post', (req, res) => {
 
 app.delete('/score_delete', (req, res) => {
     console.log(req.body);
-    //dbServer.dbDeleteScoreData(req.body.id);
     dbServerSqlite.dbDeleteRecord(req.body.id);
     
     res.json({status: 'Delete request received by server.'});
 });
 
 
-app.get('/score_get', async (req, res, next) => {
+app.get('/score_get', async (req, res) => {
+    
     try {
-        //let resultElements = await dbServer.dbSelectTopTen();
         let resultElements = await dbServerSqlite.dbSelectTopTen();
-        console.log(resultElements)
-        resultElements = JSON.parse(JSON.stringify(resultElements)) 
-        //console.log(resultElements)
+        resultElements = JSON.parse(JSON.stringify(resultElements));
         res.status(200).json(resultElements); 
     } catch(e) {
         console.log(e); 

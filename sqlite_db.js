@@ -27,16 +27,25 @@ function dbCreateRecord(name, score, lines, level) {
 
 
 function dbSelectTopTen() {
-    let sql = `SELECT T.rank, T.id, T.name, T.score, T.lines_cleared, T.level 
-            FROM (SELECT DENSE_RANK() OVER(ORDER BY score DESC, lines_cleared, level) rank,
-            id, name, score, lines_cleared, level FROM tetris_score 
-            ORDER BY rank, name DESC) AS T
-            WHERE T.rank <= 10`;
-    db.all(sql, (err, row) => {
-        if (err) return console.error(err.message);
-        row.forEach((row) => {
-            console.log(row);
+
+    return new Promise((resolve, reject) => {
+
+        let sql = `SELECT T.rank, T.id, T.name, T.score, T.lines_cleared, T.level 
+                FROM (SELECT DENSE_RANK() OVER(ORDER BY score DESC, lines_cleared, level) rank,
+                id, name, score, lines_cleared, level FROM tetris_score 
+                ORDER BY rank, name DESC) AS T
+                WHERE T.rank <= 10`;
+        let resultsArray = [];
+        db.all(sql, (err, row) => {
+            if (err) return reject(console.error(err.message));
+            row.forEach((row) => {
+                resultsArray.push(row);
+            });
+            //console.log('from dbSelectTopTen()')
+            //console.log(resultsArray);
+            return resolve(resultsArray);
         });
+
     });
 }
 
@@ -46,6 +55,7 @@ function dbSelectLastRecord() {
     db.all(sql, (err, id) => {
         if (err) return console.error(err.message);
         console.log(id);
+        return id;
     });
 }
 
