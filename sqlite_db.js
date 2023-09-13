@@ -19,7 +19,6 @@ function dbCreateRecord(name, score, lines, level) {
     sql = 'INSERT INTO tetris_score(name, score, lines_cleared, level, time_stamp) VALUES (?, ?, ?, ?, ?)';
     const currentDate = new Date();
     const timestamp = currentDate.getTime();
-    console.log(timestamp)
     db.run(sql, [name, score, lines, level, timestamp], (err) => {
         if (err) return console.error(err.message);
     });
@@ -51,18 +50,22 @@ function dbSelectTopTen() {
 
 
 function dbSelectLastRecord() {
-    let sql = `SELECT MAX(id) AS id FROM tetris_score`;
-    db.all(sql, (err, id) => {
-        if (err) return console.error(err.message);
-        console.log(id);
-        return id;
+
+    return new Promise((resolve, reject) => {
+
+        let sql = `SELECT MAX(id) AS id FROM tetris_score`;
+        db.all(sql, (err, id) => {
+            if (err) return reject(console.error(err.message));
+            console.log(id);
+            return resolve(id);
+        });
     });
 }
 
 
-function dbUpdateRecord(id, name, column_name) {
-    let sql = 'UPDATE tetris_score SET ? = ? WHERE id = ?';
-    db.run(sql, [column_name, name, id], (err) => {
+function dbUpdateRecord(id, name) {
+    let sql = 'UPDATE tetris_score SET name = ? WHERE id = ?';
+    db.run(sql, [name, id], (err) => {
         if (err) return console.error(err.message);
     });
 }

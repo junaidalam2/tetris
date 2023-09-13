@@ -4,7 +4,6 @@ require('dotenv').config();
 const app = express();
 const cors = require('cors');
 app.use(cors());
-//const dbServer = require('./server_db.js')
 const dbServerSqlite = require('./sqlite_db.js');
 const { resolve6 } = require('dns/promises');
 
@@ -27,7 +26,6 @@ app.listen(PORT, (error) => {
 app.use(express.json({limit: '500kb'}));
 app.post('/score_post', (req, res) => {
     console.log(req.body);
-    //dbServer.dbInsertScoreData(req.body.name, req.body.score, req.body.lines_cleared, req.body.level);
     dbServerSqlite.dbCreateRecord(req.body.name, req.body.score, req.body.lines_cleared, req.body.level);
     
     res.json({status: 'Score received by server.'});
@@ -36,8 +34,7 @@ app.post('/score_post', (req, res) => {
 
 app.post('/score_update_post', (req, res) => {
     console.log(req.body);
-    //dbServer.dbUpdateScoreData(req.body.id, req.body.name, req.body.column_name);
-    dbServerSqlite.dbUpdateRecord(req.body.id, req.body.name, req.body.column_name);
+    dbServerSqlite.dbUpdateRecord(req.body.id, req.body.name);
     res.json({status: 'Name received by server.'});
 });
 
@@ -63,13 +60,11 @@ app.get('/score_get', async (req, res) => {
 });
 
 
-app.get('/score_last_get', async (req, res, next) => {
+app.get('/score_last_get', async (req, res) => {
+
     try {
-        //let resultElements = await dbServer.dbSelectLastRecord();
         let resultElements = await dbServerSqlite.dbSelectLastRecord();
-        
-        resultElements = JSON.parse(JSON.stringify(resultElements)) 
-        //console.log(resultElements)
+        resultElements = JSON.parse(JSON.stringify(resultElements));
         res.status(200).json(resultElements); 
     } catch(e) {
         console.log(e); 
