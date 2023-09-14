@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 const dbServerSqlite = require('./sqlite_db.js');
-const { resolve6 } = require('dns/promises');
+//const { resolve6 } = require('dns/promises');
 
 // handle uncaught exceptions
 process.on('uncaughtException', function (err) {
