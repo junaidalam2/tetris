@@ -40,8 +40,6 @@ function dbSelectTopTen() {
             row.forEach((row) => {
                 resultsArray.push(row);
             });
-            //console.log('from dbSelectTopTen()')
-            //console.log(resultsArray);
             return resolve(resultsArray);
         });
 
