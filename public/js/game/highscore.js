@@ -187,7 +187,6 @@ function receiveScorefromServer() {
         });
     })
     .then(data => {
-        console.log(game.gameSequence.endGameFlag)
         if(game.gameSequence.endGameFlag) {
             checkForHighScore();
         }
