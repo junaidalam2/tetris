@@ -73,7 +73,7 @@ export const tetrominoColorHash = {
 }
 Object.freeze(tetrominoColorHash);
 export const timeFactorBetweenLevelsToTen = 0.85;
-export const linearTimeFactorBetweenLevelsPostTen = 0.03; // rate of increase in difficulty declines after level 9
+export const linearTimeFactorBetweenLevelsPostTen = 0.06; // rate of increase in difficulty declines after level 9
 export const minimumTimeInterval = 100;  // milliseconds
 export const startingDropInterval = 1000;  // milliseconds
 export const hardDropInterval = 15;  // milliseconds
@@ -202,10 +202,10 @@ export const exitScoreBtnModal = document.getElementById("high-score-exit");
 export const scorePostRoute = "/score_post";
 export const scoreDeleteRoute = "/score_delete";
 export const scoreUpdateRoute = "/score_update_post";
-export const getLastPlayerIdRoute = /*'https://playtetrisnow-a35d8d2d5dfb.herokuapp.com*/ '/score_last_get';
-export const getTopScoresRoute = /*'https://playtetrisnow-a35d8d2d5dfb.herokuapp.com*/ '/score_get';
-//export const getLastPlayerIdRoute = 'http://localhost:5500/score_last_get';
-//export const getTopScoresRoute = 'http://localhost:5500/score_get';
+export const getLastPlayerIdRoute = '/score_last_get';
+export const getTopScoresRoute = '/score_get';
+//export const getLastPlayerIdRoute = 'http://localhost:5500/score_last_get'; //route for dev environment
+//export const getTopScoresRoute = 'http://localhost:5500/score_get'; //route for dev environment
 export const defaultName = 'Anonymous';
 export const rowColorOnHighScore = "#f57842";
 export const namePlaceholderOnHighScore = "___________";
@@ -319,4 +319,4 @@ export const colorHash = {
     "⢦": '#03ffdd',
 }
 Object.freeze(colorHash);
-export const backgroundTimeInterval = 150 // milliseconds
+export const backgroundTimeInterval = 150; // milliseconds

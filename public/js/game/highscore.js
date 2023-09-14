@@ -124,8 +124,6 @@ function checkForHighScore() {
     
     if(game.highScore.highScoreIdArray.includes(game.highScore.lastGameScoreId)) {
 
-        console.log(game.highScore.lastGameScoreId)
-        console.table(game.highScore.highScoreIdArray)
         game.highScore.exitModalOnNewHighScore = true;
         let rowDisplay = document.querySelector(`.row${game.highScore.lastGameScoreId}`);
         let nameDisplay = document.querySelector(`.name${game.highScore.lastGameScoreId}`);
