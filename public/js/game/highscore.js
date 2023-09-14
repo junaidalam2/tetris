@@ -42,9 +42,8 @@ import {
 } from './modal.js'
 
 
-export function sendScoreToServer() {
+function sendScoreToServer() {
 
-    
     return new Promise((resolve, reject) => {
         fetch(scorePostRoute, {
                 method: 'POST',
@@ -60,8 +59,7 @@ export function sendScoreToServer() {
             }).then(res => {
             return resolve(res.json());
             })
-            .catch(error => reject(console.log(error)));
-        
+            .catch(error => reject(console.log(error)));        
         })
 }
 
@@ -127,10 +125,8 @@ exitScoreBtnModal.addEventListener("click", () => {
 
 function checkForHighScore() {
     
-    console.table(game.highScore.highScoreIdArray);
-    console.log(game.highScore.lastGameScoreId);
     if(game.highScore.highScoreIdArray.includes(game.highScore.lastGameScoreId)) {
-        console.log('condition met');
+
         game.highScore.exitModalOnNewHighScore = true;
         let rowDisplay = document.querySelector(`.row${game.highScore.lastGameScoreId}`);
         let nameDisplay = document.querySelector(`.name${game.highScore.lastGameScoreId}`);
@@ -154,9 +150,8 @@ function receiveLastIdfromServer() {
         .then(res => {return res.json()
         })    
         .then(data => {
-             game.highScore.lastGameScoreId = data.id + 1
-             //console.log(game.highScore.lastGameScoreId);
-         })
+                game.highScore.lastGameScoreId = data.id + 1
+            })
         .catch(error => console.log(error));
 }
 
@@ -201,7 +196,7 @@ function receiveScorefromServer() {
 
 }
 
-export function updateLastGameId() {
+export function updateHighScoreLastGameId() {
     if(!game.highScore.idDataReceivedFromServer) {
         receiveLastIdfromServer();
         game.highScore.idDataReceivedFromServer = true;
@@ -216,7 +211,7 @@ export function highScoreTableSetup() {
     }
 }
 
-export async function sequenceHighScoreFunctions() {
+export async function endGameSequenceScoreFunctions() {
     if(!game.highScore.dataSentToServer) {
             const result = await sendScoreToServer();
         game.highScore.dataSentToServer = true;
@@ -224,10 +219,7 @@ export async function sequenceHighScoreFunctions() {
 
     game.highScore.dataReceivedFromServer = false;
     highScoreTableSetup();
-
-
 }
-
 
 
 export function enableHighScoreButtons() {

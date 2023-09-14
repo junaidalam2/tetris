@@ -51,11 +51,10 @@ import {} from './modal.js'; // to allow event listners in modal.js to function
 
 import {
 
-    sendScoreToServer,
-    sequenceHighScoreFunctions,
+    endGameSequenceScoreFunctions,
     highScoreTableSetup,
     enableHighScoreButtons,
-    updateLastGameId
+    updateHighScoreLastGameId
 
 } from './highscore.js'
 
@@ -239,17 +238,7 @@ function endGameLogic() {
     stopBackgroundAudio();
     stopMuskAudioAll();
     document.getElementById('start-button').innerHTML = "Start";
-    
-    /*    
-    if(!game.highScore.dataSentToServer) {
-        sendScoreToServer();
-        game.highScore.dataSentToServer = true;
-    }
-
-    game.highScore.dataReceivedFromServer = false;
-    highScoreTableSetup();
-    */
-    sequenceHighScoreFunctions();
+    endGameSequenceScoreFunctions();
 }
 
 
@@ -351,7 +340,6 @@ function updateStaticCanvas(canvasArray, tetroArray, positionHash) {
 
 
 export function regexNumberWithComma(integer) {
-
     return integer.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -850,7 +838,7 @@ function resetGame() {
     renderMuskRestart();
     enableHighScoreButtons();
     game.highScore.idDataReceivedFromServer = false;
-    updateLastGameId();
+    updateHighScoreLastGameId();
 
 }
 
@@ -859,8 +847,7 @@ function update(time = 0) {
 
     if(!game.gameSequence.firstGameStartedFlag) {
         highScoreTableSetup();
-        updateLastGameId();
-
+        updateHighScoreLastGameId();
     }
 
     if(game.gameSequence.gameOn && !game.gameSequence.endGameFlag) {
