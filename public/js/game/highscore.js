@@ -218,7 +218,7 @@ export function highScoreTableSetup() {
 
 export async function sequenceHighScoreFunctions() {
     if(!game.highScore.dataSentToServer) {
-            let result = await sendScoreToServer();
+            const result = await sendScoreToServer();
         game.highScore.dataSentToServer = true;
     }
 
