@@ -199,7 +199,6 @@ function receiveScorefromServer() {
 export function highScoreTableSetup() {
     if(!game.highScore.dataReceivedFromServer) {
         receiveScorefromServer();
-        console.log('condition met')
         game.highScore.dataReceivedFromServer = true;
     }
 }
