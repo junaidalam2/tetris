@@ -73,7 +73,7 @@ function deleteRequestToServer() {
                 id: game.highScore.lastGameScoreId,
             })
         }).then(res => {
-        return res.json()
+        return res.json();
         })
         .catch(error => console.log(error));
 }
@@ -92,7 +92,7 @@ function updateNameToServer() {
                 column_name: 'name',
             })
         }).then(res => {
-        return res.json()
+        return res.json();
         })
         .catch(error => console.log(error));
 }
@@ -149,11 +149,9 @@ function receiveLastIdfromServer() {
         .then(res => {return res.json()})    
         .then(data => {
             data.forEach((record) => {
-                game.highScore.lastGameScoreId = record.id + 1; // db autoincrements id
+                game.highScore.lastGameScoreId = record.id + 1; // database autoincrements id
              });
-             //return game.highScore.lastGameScoreId;
          })
-        //.then(response => {checkForHighScore()})
         .catch(error => console.log(error));
 }
 
@@ -177,65 +175,24 @@ function insertHtmlHighScore(record) {
 
 function receiveScorefromServer() {
 
-    /*
     fetch(getTopScoresRoute, {
-        headers: {
-            'Content-Type': 'application/json'
-        }})
-        .then(res => {return res.json()})    
-        .then(data => {
-            clearHighScoreTable();
-            data.forEach((record) => {
-                insertHtmlHighScore(record);
-                game.highScore.highScoreIdArray.push(record.id)
-             });
-             return game.highScore.highScoreIdArray
-         })
-         .then( (response) => {
-            if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
-                receiveLastIdfromServer();
-                game.highScore.idDataReceivedFromServer = true;
-                return response 
-            }
-         })
-        .catch(error => console.log(error));
-         */
-
-
-        //return new Promise((resolve, reject) => {
-
-
-            fetch(getTopScoresRoute, {
-            headers: {
-                'Content-Type': 'application/json'
-            }})
-            .then(res => {return res.json()})    
-            .then(data => {
-                clearHighScoreTable();
-                data.forEach((record) => {
-                    insertHtmlHighScore(record);
-                    game.highScore.highScoreIdArray.push(record.id)
-                });
-                //return resolve(game.highScore.highScoreIdArray)
-            })
-
-            /*
-            .then( (response) => {
-                if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
-                    receiveLastIdfromServer();
-                    game.highScore.idDataReceivedFromServer = true;
-                    return resolve(response) 
-                }
-            })*/
-            //.catch(error => reject(console.log(error)));
-            .then(data => {
-                if(game.gameSequence.endGameFlag){
-                    checkForHighScore();
-                }
-            })
-            .catch(error => console.log(error));
-
-        //})
+    headers: {
+        'Content-Type': 'application/json'
+    }})
+    .then(res => {return res.json()})    
+    .then(data => {
+        clearHighScoreTable();
+        data.forEach((record) => {
+            insertHtmlHighScore(record);
+            game.highScore.highScoreIdArray.push(record.id);
+        });
+    })
+    .then(data => {
+        if(game.gameSequence.endGameFlag) {
+            checkForHighScore();
+        }
+    })
+    .catch(error => console.log(error));
 
 }
 
@@ -247,18 +204,10 @@ export function updateLastGameId() {
 } 
 
 
-
- 
 export function highScoreTableSetup() {
     if(!game.highScore.dataReceivedFromServer) {
         receiveScorefromServer();
         game.highScore.dataReceivedFromServer = true;
-
-        // if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
-        //     receiveLastIdfromServer();
-        //     game.highScore.idDataReceivedFromServer = true;
-        // }
-
     }
 }
 
