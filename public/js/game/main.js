@@ -53,7 +53,8 @@ import {
 
     sendScoreToServer,
     highScoreTableSetup,
-    enableHighScoreButtons
+    enableHighScoreButtons,
+    updateLastGameId
 
 } from './highscore.js'
 
@@ -245,7 +246,7 @@ function endGameLogic() {
 
     //clearHighScoreTable();
     game.highScore.dataReceivedFromServer = false;
-    game.highScore.idDataReceivedFromServer = false;
+    //game.highScore.idDataReceivedFromServer = false;
     highScoreTableSetup();
     //receiveLastIdfromServer();
 }
@@ -848,6 +849,8 @@ function resetGame() {
     document.getElementById('start-button').innerHTML = "Start";
     renderMuskRestart();
     enableHighScoreButtons();
+    game.highScore.idDataReceivedFromServer = false;
+    updateLastGameId();
 
 }
 
@@ -856,6 +859,8 @@ function update(time = 0) {
 
     if(!game.gameSequence.firstGameStartedFlag) {
         highScoreTableSetup();
+        updateLastGameId();
+
     }
 
     if(game.gameSequence.gameOn && !game.gameSequence.endGameFlag) {
