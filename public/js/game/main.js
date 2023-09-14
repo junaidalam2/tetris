@@ -835,7 +835,6 @@ function resetGame() {
     game.render.startGameRender.startCountFlag = false;
     game.render.startGameRender.startCountComplete = false;
     game.highScore.dataSentToServer = false;
-    game.highScore.lastGameScoreId = null;
     game.highScore.exitModalOnNewHighScore = false;
     game.highScore.highScoreIdArray = [];
     game.highScore.name = null;
