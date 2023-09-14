@@ -109,6 +109,7 @@ export const game = {
 
         dataSentToServer: false, 
         dataReceivedFromServer: false, 
+        idDataReceivedFromServer: false, 
         highScoreIdArray: [], 
         lastGameScoreId: null, 
         exitModalOnNewHighScore: false, 
@@ -244,10 +245,11 @@ function endGameLogic() {
         game.highScore.dataSentToServer = true;
     }
 
-    clearHighScoreTable();
+    //clearHighScoreTable();
     game.highScore.dataReceivedFromServer = false;
+    game.highScore.idDataReceivedFromServer = false;
     highScoreTableSetup();
-    receiveLastIdfromServer();
+    //receiveLastIdfromServer();
 }
 
 
@@ -854,6 +856,10 @@ function resetGame() {
 
 function update(time = 0) {
 
+    if(!game.gameSequence.firstGameStartedFlag) {
+        highScoreTableSetup();
+    }
+
     if(game.gameSequence.gameOn && !game.gameSequence.endGameFlag) {
 
         if(!game.gameSequence.gameStartedFlag) {
@@ -884,7 +890,6 @@ function update(time = 0) {
     
     draw();
     requestAnimationFrame(update);
-    highScoreTableSetup();
 }
 
 

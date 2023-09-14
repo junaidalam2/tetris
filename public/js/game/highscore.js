@@ -186,6 +186,12 @@ function receiveScorefromServer() {
                 game.highScore.highScoreIdArray.push(record.id)
              });
          })
+         .then(data => {
+            if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
+                receiveLastIdfromServer();
+                game.highScore.idDataReceivedFromServer = true;
+            }
+         })
         .catch(error => console.log(error));
 }
 
@@ -193,6 +199,7 @@ function receiveScorefromServer() {
 export function highScoreTableSetup() {
     if(!game.highScore.dataReceivedFromServer) {
         receiveScorefromServer();
+        console.log('condition met')
         game.highScore.dataReceivedFromServer = true;
     }
 }
@@ -207,7 +214,6 @@ export function enableHighScoreButtons() {
     submitScoreBtn.style.color = enabledBtnFontColor;
     submitScoreBtn.style.backgroundColor = enabledBtnBgColor;
     submitScoreBtn.disabled = false;
-
 }
 
 
