@@ -149,8 +149,11 @@ export function receiveLastIdfromServer() {
             data.forEach((record) => {
                 game.highScore.lastGameScoreId = record.id;
              });
+             return game.highScore.lastGameScoreId;
          })
-        .then(data => checkForHighScore())
+        .then((response) => {checkForHighScore();
+            return response;
+        })
         .catch(error => console.log(error));
 }
 
@@ -185,11 +188,13 @@ function receiveScorefromServer() {
                 insertHtmlHighScore(record);
                 game.highScore.highScoreIdArray.push(record.id)
              });
+             return game.highScore.highScoreIdArray
          })
-         .then(data => {
+         .then( (response) => {
             if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
                 receiveLastIdfromServer();
                 game.highScore.idDataReceivedFromServer = true;
+                return response 
             }
          })
         .catch(error => console.log(error));
