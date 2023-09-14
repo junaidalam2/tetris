@@ -144,11 +144,19 @@ function receiveLastIdfromServer() {
         headers: {
             'Content-Type': 'application/json'
         }})
-        .then(res => {return res.json()})    
+        .then(res => {return res.json()
+        })    
         .then(data => {
-            data.forEach((record) => {
-                game.highScore.lastGameScoreId = record.id + 1; // database autoincrements id
-             });
+            // data.forEach((record) => {
+            //     game.highScore.lastGameScoreId = record.id + 1; // database autoincrements id
+            //  });
+            //console.log(data);
+            //console.log(data.id);
+            //console.log(typeof data.id);
+             //data.map((element) => game.highScore.lastGameScoreId = element.id + 1)
+
+             game.highScore.lastGameScoreId = data.id + 1
+             console.log(game.highScore.lastGameScoreId);
          })
         .catch(error => console.log(error));
 }
@@ -186,6 +194,7 @@ function receiveScorefromServer() {
         });
     })
     .then(data => {
+        console.log(game.gameSequence.endGameFlag)
         if(game.gameSequence.endGameFlag) {
             checkForHighScore();
         }
