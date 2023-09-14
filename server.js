@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 const dbServerSqlite = require('./sqlite_db.js');
-const { resolve6 } = require('dns/promises');
+//const { resolve6 } = require('dns/promises');
 
 // handle uncaught exceptions
 process.on('uncaughtException', function (err) {
@@ -27,7 +27,6 @@ app.use(express.json({limit: '500kb'}));
 app.post('/score_post', (req, res) => {
     console.log(req.body);
     dbServerSqlite.dbCreateRecord(req.body.name, req.body.score, req.body.lines_cleared, req.body.level);
-    
     res.json({status: 'Score received by server.'});
 });
 
@@ -42,7 +41,6 @@ app.post('/score_update_post', (req, res) => {
 app.delete('/score_delete', (req, res) => {
     console.log(req.body);
     dbServerSqlite.dbDeleteRecord(req.body.id);
-    
     res.json({status: 'Delete request received by server.'});
 });
 
