@@ -2,18 +2,12 @@ const sqlite = require('sqlite3').verbose();
 
 
 function dbConnect() {
-
-
         const db = new sqlite.Database('./sqlite_score.db', sqlite.OPEN_READWRITE, (err) => {
             if (err) return console.error(err.message);
         });
 
         return db;
-  
 }
-
-
-
 
 
 function createTable() {
@@ -58,7 +52,6 @@ function dbSelectTopTen() {
         });
         db.close();
     });
-
 }
 
 
@@ -98,7 +91,6 @@ function dbDeleteRecord(id) {
     db.close();
 }
 
-console.log(dbSelectLastRecord() )
 
 module.exports = {
 
@@ -109,6 +101,3 @@ module.exports = {
     dbUpdateRecord,
 
 };
-
-
-
