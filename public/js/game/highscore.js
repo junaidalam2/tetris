@@ -44,21 +44,25 @@ import {
 
 export function sendScoreToServer() {
 
-    fetch(scorePostRoute, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: defaultName,
-                score: player.metrics.score,
-                lines_cleared: player.metrics.linesCleared,
-                level: player.metrics.level
+    
+    return new Promise((resolve, reject) => {
+        fetch(scorePostRoute, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: defaultName,
+                    score: player.metrics.score,
+                    lines_cleared: player.metrics.linesCleared,
+                    level: player.metrics.level
+                })
+            }).then(res => {
+            return resolve(res.json());
             })
-        }).then(res => {
-        return res.json()
+            .catch(error => reject(console.log(error)));
+        
         })
-        .catch(error => console.log(error));
 }
 
 
@@ -211,6 +215,19 @@ export function highScoreTableSetup() {
         game.highScore.dataReceivedFromServer = true;
     }
 }
+
+export async function sequenceHighScoreFunctions() {
+    if(!game.highScore.dataSentToServer) {
+            let result = await sendScoreToServer();
+        game.highScore.dataSentToServer = true;
+    }
+
+    game.highScore.dataReceivedFromServer = false;
+    highScoreTableSetup();
+
+
+}
+
 
 
 export function enableHighScoreButtons() {

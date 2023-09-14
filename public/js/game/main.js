@@ -52,6 +52,7 @@ import {} from './modal.js'; // to allow event listners in modal.js to function
 import {
 
     sendScoreToServer,
+    sequenceHighScoreFunctions,
     highScoreTableSetup,
     enableHighScoreButtons,
     updateLastGameId
@@ -239,16 +240,16 @@ function endGameLogic() {
     stopMuskAudioAll();
     document.getElementById('start-button').innerHTML = "Start";
     
+    /*    
     if(!game.highScore.dataSentToServer) {
         sendScoreToServer();
         game.highScore.dataSentToServer = true;
     }
 
-    //clearHighScoreTable();
     game.highScore.dataReceivedFromServer = false;
-    //game.highScore.idDataReceivedFromServer = false;
     highScoreTableSetup();
-    //receiveLastIdfromServer();
+    */
+    sequenceHighScoreFunctions();
 }
 
 
