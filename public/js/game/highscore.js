@@ -138,7 +138,7 @@ function checkForHighScore() {
 };
 
 
-export function receiveLastIdfromServer() {
+function receiveLastIdfromServer() {
 
     fetch(getLastPlayerIdRoute, {
         headers: {
@@ -158,7 +158,7 @@ export function receiveLastIdfromServer() {
 }
 
 
-export function clearHighScoreTable() {
+function clearHighScoreTable() {
     tableDisplay.innerHTML
         = "<tr><th>Rank</th><th>Name</th><th>Score</th><th>Lines</th><th>Level</th></tr>";
 }
@@ -177,6 +177,7 @@ function insertHtmlHighScore(record) {
 
 function receiveScorefromServer() {
 
+    /*
     fetch(getTopScoresRoute, {
         headers: {
             'Content-Type': 'application/json'
@@ -198,13 +199,52 @@ function receiveScorefromServer() {
             }
          })
         .catch(error => console.log(error));
+         */
+
+
+        return new Promise((resolve, reject) => {
+
+
+            fetch(getTopScoresRoute, {
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+            .then(res => {return res.json()})    
+            .then(data => {
+                clearHighScoreTable();
+                data.forEach((record) => {
+                    insertHtmlHighScore(record);
+                    game.highScore.highScoreIdArray.push(record.id)
+                });
+                return resolve(game.highScore.highScoreIdArray)
+            })
+
+            /*
+            .then( (response) => {
+                if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
+                    receiveLastIdfromServer();
+                    game.highScore.idDataReceivedFromServer = true;
+                    return resolve(response) 
+                }
+            })*/
+            .catch(error => reject(console.log(error)));
+
+        })
+
 }
 
 
-export function highScoreTableSetup() {
+ 
+export async function highScoreTableSetup() {
     if(!game.highScore.dataReceivedFromServer) {
-        receiveScorefromServer();
         game.highScore.dataReceivedFromServer = true;
+        await receiveScorefromServer();
+
+        if(!game.highScore.idDataReceivedFromServer && game.gameSequence.firstGameStartedFlag) {
+            receiveLastIdfromServer();
+            game.highScore.idDataReceivedFromServer = true;
+        }
+
     }
 }
 

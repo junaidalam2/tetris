@@ -52,8 +52,6 @@ import {} from './modal.js'; // to allow event listners in modal.js to function
 import {
 
     sendScoreToServer,
-    receiveLastIdfromServer,
-    clearHighScoreTable,
     highScoreTableSetup,
     enableHighScoreButtons
 
