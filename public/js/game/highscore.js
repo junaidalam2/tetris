@@ -123,8 +123,10 @@ exitScoreBtnModal.addEventListener("click", () => {
 
 function checkForHighScore() {
     
+    console.table(game.highScore.highScoreIdArray);
+    console.log(game.highScore.lastGameScoreId);
     if(game.highScore.highScoreIdArray.includes(game.highScore.lastGameScoreId)) {
-
+        console.log('condition met');
         game.highScore.exitModalOnNewHighScore = true;
         let rowDisplay = document.querySelector(`.row${game.highScore.lastGameScoreId}`);
         let nameDisplay = document.querySelector(`.name${game.highScore.lastGameScoreId}`);
