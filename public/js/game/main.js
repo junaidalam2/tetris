@@ -515,7 +515,7 @@ function updateGameStats(player) {
         let previousLevel = player.metrics.level
         updateScore(removedRowCounter, player);
         player.metrics.linesCleared += removedRowCounter;
-        player.level = Math.floor(player.metrics.linesCleared / linesToCompleteLevel);
+        player.metrics.level = Math.floor(player.metrics.linesCleared / linesToCompleteLevel);
         updateScoreHTML();
 
         if(previousLevel < player.metrics.level) {
